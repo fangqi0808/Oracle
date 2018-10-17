@@ -1,6 +1,6 @@
 # Oracle
-#### 实验一<br>
-# 查询1：
+# 实验一<br>
+### 查询1：
 
 ```SQL
 SELECT d.department_name，count(e.job_id)as "部门总人数"，
@@ -17,7 +17,7 @@ GROUP BY department_name;
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test1/1.1.png)
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test1/1.2.png)
 
-- 查询2：
+### 查询2：
 ```SQL
 SELECT d.department_name，count(e.job_id)as "部门总人数"，
 avg(e.salary)as "平均工资"
