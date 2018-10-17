@@ -1,6 +1,6 @@
 # Oracle
-## 实验一<br>
-查询1：
+#### 实验一<br>
+# 查询1：
 
 ```SQL
 SELECT d.department_name，count(e.job_id)as "部门总人数"，
