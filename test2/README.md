@@ -16,7 +16,7 @@ SQL> GRANT con_res_view TO new_user;
 Grant succeeded.
 SQL> exit
 ```
-> 语句“ALTER USER new_user QUOTA 50M ON users;”是指授权new_user用户访问users表空间，空间限额是50M。
+
 
 - 第2步：新用户new_user连接到pdborcl，创建表mytable和视图myview，插入数据，最后将myview的SELECT对象权限授予hr用户。
 
