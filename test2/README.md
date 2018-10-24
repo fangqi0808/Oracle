@@ -68,7 +68,7 @@ SQL>SELECT a.tablespace_name "表空间名",Total/1024/1024 "大小MB",
  where  a.tablespace_name = b.tablespace_name;
 ```
 ### SQL-DEVELOPER修改用户的操作界面：
-![](./img/sqldevelop修改用户.png)
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test2/2.5.jpg)
 
 ### sqldeveloper授权对象的操作界面：
-![](./img/sqldevelop授权对象.png)
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test2/2.6.png)
