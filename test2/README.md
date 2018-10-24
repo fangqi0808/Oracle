@@ -4,15 +4,15 @@
 
 ```sql
 $ sqlplus system/123@pdborcl
-SQL> CREATE ROLE con_res_view;
+SQL> CREATE ROLE fq;
 Role created.
-SQL> GRANT connect,resource,CREATE VIEW TO con_res_view;
+SQL> GRANT connect,resource,CREATE VIEW TO fq;
 Grant succeeded.
-SQL> CREATE USER new_user IDENTIFIED BY 123 DEFAULT TABLESPACE users TEMPORARY TABLESPACE temp;
+SQL> CREATE qf IDENTIFIED BY 123 DEFAULT TABLESPACE users TEMPORARY TABLESPACE temp;
 User created.
-SQL> ALTER USER new_user QUOTA 50M ON users;
+SQL> ALTER USER qf QUOTA 50M ON users;
 User altered.
-SQL> GRANT con_res_view TO new_user;
+SQL> GRANT fq TO qf;
 Grant succeeded.
 SQL> exit
 ```
@@ -21,9 +21,9 @@ SQL> exit
 ### 第2步：新用户new_user连接到pdborcl，创建表mytable和视图myview，插入数据，最后将myview的SELECT对象权限授予hr用户。
 
 ```sql
-$ sqlplus new_user/123@pdborcl
+$ sqlplus qf/123@pdborcl
 SQL> show user;
-USER is "NEW_USER"
+USER is "QF"
 SQL> CREATE TABLE mytable (id number,name varchar(50));
 Table created.
 SQL> INSERT INTO mytable(id,name)VALUES(1,'zhang');
