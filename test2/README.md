@@ -67,4 +67,8 @@ SQL>SELECT a.tablespace_name "表空间名",Total/1024/1024 "大小MB",
         group  BY tablespace_name)b
  where  a.tablespace_name = b.tablespace_name;
 ```
+### SQL-DEVELOPER修改用户的操作界面：
+![](./img/sqldevelop修改用户.png)
 
+### sqldeveloper授权对象的操作界面：
+![](./img/sqldevelop授权对象.png)
