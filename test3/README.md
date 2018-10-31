@@ -1,4 +1,6 @@
-## 在主表orders和从表order_details之间建立引用分区在study用户中创建两个表：orders（订单表）和order_details（订单详表），两个表通过列order_id建立主外键关联。orders表按范围分区进行存储，order_details使用引用分区进行存储。
+# 实验3：创建分区表
+
+### 在主表orders和从表order_details之间建立引用分区在study用户中创建两个表：orders（订单表）和order_details（订单详表），两个表通过列order_id建立主外键关联。orders表按范围分区进行存储，order_details使用引用分区进行存储。
 - 创建orders表的部分语句是：
 
 ```sql
@@ -43,7 +45,7 @@ TABLESPACE USERS02
 );
 ```
 
-创建order_details表的部分语句如下：
+- 创建order_details表的部分语句如下：
 ```sql
 SQL> CREATE TABLE order_details 
 (
@@ -75,4 +77,22 @@ TABLESPACE USERS02
 ) 
 NOCOMPRESS NO INMEMORY  
 );
+```
+
+### 查看数据库的使用情况
+
+- 以下样例查看表空间的数据库文件，以及每个文件的磁盘占用情况。
+
+```sql
+$ sqlplus system/123@pdborcl
+SQL>SELECT tablespace_name,FILE_NAME,BYTES/1024/1024 MB,MAXBYTES/1024/1024 MAX_MB,autoextensible FROM dba_data_files  WHERE  tablespace_name='USERS';
+
+SQL>SELECT a.tablespace_name "表空间名",Total/1024/1024 "大小MB",
+ free/1024/1024 "剩余MB",( total - free )/1024/1024 "使用MB",
+ Round(( total - free )/ total,4)* 100 "使用率%"
+ from (SELECT tablespace_name,Sum(bytes)free
+        FROM   dba_free_space group  BY tablespace_name)a,
+       (SELECT tablespace_name,Sum(bytes)total FROM dba_data_files
+        group  BY tablespace_name)b
+ where  a.tablespace_name = b.tablespace_name;
 ```
