@@ -5,11 +5,13 @@
 ### 在主表orders和从表order_details之间建立引用分区在study用户中创建两个表：orders（订单表）和order_details（订单详表），两个表通过列order_id建立主外键关联。orders表按范围分区进行存储，order_details使用引用分区进行存储。
 - 创建orders表的部分语句是：
 
+```sql
 $ ssh oracle@202.115.82.8
 oracle@202.115.82.8's password:
 [oracle@deep02 ~]$ sqlplus qf/123@qdborcl
 
-```sql
+
+
 SQL> CREATE TABLE orders 
 (
  order_id NUMBER(10, 0) NOT NULL 
