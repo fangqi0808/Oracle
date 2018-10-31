@@ -1,7 +1,13 @@
 # 实验3：创建分区表
 
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test1/%E6%9F%A5%E8%AF%A21.1.png)
+
 ### 在主表orders和从表order_details之间建立引用分区在study用户中创建两个表：orders（订单表）和order_details（订单详表），两个表通过列order_id建立主外键关联。orders表按范围分区进行存储，order_details使用引用分区进行存储。
 - 创建orders表的部分语句是：
+
+$ ssh oracle@202.115.82.8
+oracle@202.115.82.8's password:
+[oracle@deep02 ~]$ sqlplus qf/123@qdborcl
 
 ```sql
 SQL> CREATE TABLE orders 
@@ -43,7 +49,7 @@ NOLOGGING
 TABLESPACE USERS02 
 ...
 );
-```
+
 
 - 创建order_details表的部分语句如下：
 ```sql
@@ -77,7 +83,7 @@ TABLESPACE USERS02
 ) 
 NOCOMPRESS NO INMEMORY  
 );
-```
+
 
 ### 查看数据库的使用情况
 
@@ -95,4 +101,4 @@ SQL>SELECT a.tablespace_name "表空间名",Total/1024/1024 "大小MB",
        (SELECT tablespace_name,Sum(bytes)total FROM dba_data_files
         group  BY tablespace_name)b
  where  a.tablespace_name = b.tablespace_name;
-```
+
