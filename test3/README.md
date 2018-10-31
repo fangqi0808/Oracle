@@ -49,7 +49,7 @@ NOLOGGING
 TABLESPACE USERS02 
 ...
 );
-
+```
 
 - 创建order_details表的部分语句如下：
 ```sql
@@ -83,7 +83,7 @@ TABLESPACE USERS02
 ) 
 NOCOMPRESS NO INMEMORY  
 );
-
+```
 
 ### 查看数据库的使用情况
 
