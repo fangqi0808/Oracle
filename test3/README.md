@@ -83,7 +83,6 @@ TABLESPACE USERS02
 
 ### 查看数据库的使用情况
 
-![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test3/YN8(GYPEBZN323(9M1%7B_3CV.png)
 #### 以下样例查看表空间的数据库文件，以及每个文件的磁盘占用情况。
 
 
