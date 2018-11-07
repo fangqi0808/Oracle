@@ -84,6 +84,7 @@ TABLESPACE USERS02
 ### 查看数据库的使用情况
 
 #### 以下样例查看表空间的数据库文件，以及每个文件的磁盘占用情况。
+https://github.com/fangqi201610414409/Oracle/blob/master/test3/YN8(GYPEBZN323(9M1%7B_3CV.png)
 
 ```sql
 $ sqlplus system/123@pdborcl
@@ -99,4 +100,3 @@ SQL>SELECT a.tablespace_name "表空间名",Total/1024/1024 "大小MB",
  where  a.tablespace_name = b.tablespace_name;
 ```
 
-![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test3/YN8(GYPEBZN323(9M1%7B_3CV.png)
