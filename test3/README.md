@@ -35,11 +35,11 @@ CREATE TABLE "QF"."ORDERS"
  NOCOMPRESS NOLOGGING 
   STORAGE(
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
-  TABLESPACE "USERS02" ) ;
+  TABLESPACE "USERS02" ) ;  
+
+```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test3/YN8(GYPEBZN323(9M1%7B_3CV.png)  
   
-  
-```
 
 - 创建order_details表的部分语句如下：
 ```sql
@@ -78,9 +78,8 @@ PARTITION PARTITION_BEFORE_2017
 NOLOGGING 
 TABLESPACE USERS02
 );
-![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test3/%7B%259B%7DHA%5BKEE40K%24BH%5D%60LZ%7DS.png)
-
 ```
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test3/%7B%259B%7DHA%5BKEE40K%24BH%5D%60LZ%7DS.png)
 
 ### 查看数据库的使用情况
 
