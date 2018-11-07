@@ -86,6 +86,7 @@ TABLESPACE USERS02
 #### 查看表空间的数据库文件，以及每个文件的磁盘占用情况。
 
 ```sql
+[oracle@deep02 ~]$ sqlplus system/123@qdborcl
 SQL>SELECT tablespace_name,FILE_NAME,BYTES/1024/1024 MB,MAXBYTES/1024/1024 MAX_MB,autoextensible FROM dba_data_files  WHERE  tablespace_name='USERS';
 
 SQL>SELECT a.tablespace_name "表空间名",Total/1024/1024 "大小MB",
