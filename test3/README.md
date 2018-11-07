@@ -79,7 +79,7 @@ NOLOGGING
 TABLESPACE USERS02
 );
 ```
-![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test3/%7B%259B%7DHA%5BKEE40K%24BH%5D%60LZ%7DS.png)
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test3/A_0%24FSD%5D5~C%7BE%5DXF%7B%40BHAFA.png)
 
 ### 查看数据库的使用情况
 
@@ -97,4 +97,5 @@ SQL>SELECT a.tablespace_name "表空间名",Total/1024/1024 "大小MB",
        (SELECT tablespace_name,Sum(bytes)total FROM dba_data_files
         group  BY tablespace_name)b
  where  a.tablespace_name = b.tablespace_name;
-
+```
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test3/YN8(GYPEBZN323(9M1%7B_3CV.png)
