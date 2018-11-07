@@ -86,11 +86,6 @@ TABLESPACE USERS02
 #### 查看表空间的数据库文件，以及每个文件的磁盘占用情况。
 
 ```sql
-$ sqlplus system/123@pdborcl
-```
-![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test3/YN8(GYPEBZN323(9M1%7B_3CV.pn)
-
-```sql
 SQL>SELECT tablespace_name,FILE_NAME,BYTES/1024/1024 MB,MAXBYTES/1024/1024 MAX_MB,autoextensible FROM dba_data_files  WHERE  tablespace_name='USERS';
 
 SQL>SELECT a.tablespace_name "表空间名",Total/1024/1024 "大小MB",
@@ -102,4 +97,3 @@ SQL>SELECT a.tablespace_name "表空间名",Total/1024/1024 "大小MB",
         group  BY tablespace_name)b
  where  a.tablespace_name = b.tablespace_name;
 ```
-![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test3/YN8(GYPEBZN323(9M1%7B_3CV.png)
