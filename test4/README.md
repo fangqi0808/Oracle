@@ -80,4 +80,4 @@ STORAGE
 )
 NOCOMPRESS NO INMEMORY NOPARALLEL;
 ```
-![Alt](
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/2.png)
