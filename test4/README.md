@@ -36,4 +36,4 @@ begin
 end;
 /
 ```sql
-![ALT](https://github.com/fangqi201610414409/Oracle/blob/master/test4/1.png)
+![AIT](https://github.com/fangqi201610414409/Oracle/blob/master/test4/1.png)
