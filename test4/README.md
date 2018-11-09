@@ -37,7 +37,7 @@ end;
 /
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/1.png)
-
+- 创建表departments
 ```sql
 CREATE TABLE DEPARTMENTS
 (
@@ -81,6 +81,8 @@ STORAGE
 NOCOMPRESS NO INMEMORY NOPARALLEL;
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/2.png)
+
+- 创建表employees
 ```sql
 CREATE TABLE EMPLOYEES
 (
