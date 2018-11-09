@@ -35,5 +35,5 @@ begin
       end if;
 end;
 /
-```sql
-![AIT](https://github.com/fangqi201610414409/Oracle/blob/master/test4/1.png)
+```
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/1.png)
