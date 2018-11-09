@@ -151,6 +151,8 @@ LOB (PHOTO) STORE AS SYS_LOB0000092017C00009$$
 );
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/3.png)
+
+
 ```sql
 CREATE INDEX EMPLOYEES_INDEX1_NAME ON EMPLOYEES (NAME ASC)
 NOLOGGING
@@ -177,7 +179,8 @@ REFERENCES DEPARTMENTS
 )
 ENABLE;
 ```
-![Alt](
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/4.png)
+
 ```sql
 ALTER TABLE EMPLOYEES
 ADD CONSTRAINT EMPLOYEES_FK2 FOREIGN KEY
