@@ -201,9 +201,9 @@ ENABLE;
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/4.png)
 
 - 更改表
-![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/5.png)/br
-![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/6.png)/br
-![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/7.png)
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/5.png)<br>
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/6.png)<br>
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/7.png)<br>
 
 
 - 创建表与注释
