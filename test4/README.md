@@ -55,7 +55,6 @@ end;
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/1.png)
 
 
-
 - 创建表departments
 ```sql
 CREATE TABLE DEPARTMENTS
@@ -202,21 +201,13 @@ ENABLE;
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/4.png)
 
 - 更改表
---![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/5.png)
---![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/6.png)
---![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/7.png)
+- ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/5.png)
+- ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/6.png)
+- ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/7.png)
 
 
-```sql
-CREATE GLOBAL TEMPORARY TABLE "ORDER_ID_TEMP"
-   (	"ORDER_ID" NUMBER(10,0) NOT NULL ENABLE,
-	 CONSTRAINT "ORDER_ID_TEMP_PK" PRIMARY KEY ("ORDER_ID") ENABLE
-   ) ON COMMIT DELETE ROWS ;
-
-   COMMENT ON TABLE "ORDER_ID_TEMP"  IS '用于触发器存储临时ORDER_ID';
-```
+- 创建表与注释
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/8.png)
-
 
 
 ```sql
@@ -311,11 +302,8 @@ STORAGE
   BUFFER_POOL DEFAULT
 )
 NOPARALLEL;
-```
-![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/10.png)
 
 
-```sql
 CREATE INDEX ORDERS_INDEX_CUSTOMER_NAME ON ORDERS (CUSTOMER_NAME ASC)
 NOLOGGING
 TABLESPACE USERS
@@ -353,9 +341,10 @@ STORAGE
 )
 NOPARALLEL;
 ```
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/10.png)
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/11.png)
 
-
+- 更改表
 ```sql
 ALTER TABLE ORDERS
 ADD CONSTRAINT ORDERS_PK PRIMARY KEY
@@ -378,7 +367,7 @@ ENABLE;
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/12.png)
 
-
+- 创建表ORDER_DETAILS
 ```sql
 CREATE TABLE ORDER_DETAILS
 (
@@ -511,9 +500,6 @@ END;
 
 
 - 批量插入订单数据之前，禁用触发器
-```sql
-ALTER TRIGGER "ORDERS_TRIG_ROW_LEVEL" DISABLE;
-```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/17.png)
 
 
@@ -561,7 +547,7 @@ BEGIN
     UPDATE ORDERS SET TRADE_RECEIVABLE = m - discount
       WHERE ORDER_ID=R.ORDER_ID;
   END LOOP;
-  --delete from ORDER_ID_TEMP; --这句话很重要，否则可能一直不释放空间，后继插入会非常慢。
+  --delete from ORDER_ID_TEMP; 
 END;
 /
 ALTER TRIGGER "ORDER_DETAILS_SNTNS_TRIG" DISABLE;
@@ -569,24 +555,7 @@ ALTER TRIGGER "ORDER_DETAILS_SNTNS_TRIG" DISABLE;
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/19.png)
 
 
-```sql
-CREATE SEQUENCE  "SEQ_ORDER_ID"  MINVALUE 1 MAXVALUE 9999999999 INCREMENT BY 1 START WITH 1 CACHE 2000 ORDER  NOCYCLE  NOPARTITION ;
-
-
-CREATE SEQUENCE  "SEQ_ORDER_DETAILS_ID"  MINVALUE 1 MAXVALUE 9999999999 INCREMENT BY 1 START WITH 1 CACHE 2000 ORDER  NOCYCLE  NOPARTITION ;
-
-CREATE OR REPLACE FORCE EDITIONABLE VIEW "VIEW_ORDER_DETAILS" ("ID", "ORDER_ID", "CUSTOMER_NAME", "CUSTOMER_TEL", "ORDER_DATE", "PRODUCT_TYPE", "PRODUCT_NAME", "PRODUCT_NUM", "PRODUCT_PRICE") AS
-  SELECT
-  d.ID,
-  o.ORDER_ID,
-  o.CUSTOMER_NAME,o.CUSTOMER_TEL,o.ORDER_DATE,
-  p.PRODUCT_TYPE,
-  d.PRODUCT_NAME,
-  d.PRODUCT_NUM,
-  d.PRODUCT_PRICE
-FROM ORDERS o,ORDER_DETAILS d,PRODUCTS p where d.ORDER_ID=o.ORDER_ID and d.PRODUCT_NAME=p.PRODUCT_NAME;
-/
-```
+- 创建序列与视图创建
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/20.png)
 
 
