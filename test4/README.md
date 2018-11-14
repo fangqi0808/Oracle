@@ -559,7 +559,7 @@ ALTER TRIGGER "ORDER_DETAILS_SNTNS_TRIG" DISABLE;
 ### 创建序列与视图创建<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/20.png)
 
-- 插入departments，employees数据<br>
+### 插入departments，employees数据<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/21.png)<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/22.png)<br>
 
