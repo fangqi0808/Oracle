@@ -200,13 +200,13 @@ ENABLE;
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/4.png)
 
-- 更改表
+- 更改表<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/5.png)<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/6.png)<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/7.png)<br>
 
 
-- 创建表与注释
+- 创建表与注释<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/8.png)
 
 
@@ -341,8 +341,8 @@ STORAGE
 )
 NOPARALLEL;
 ```
-- ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/10.png)
-- ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/11.png)
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/10.png)<br>
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/11.png)<br>
 
 - 更改表
 ```sql
@@ -499,8 +499,8 @@ END;
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/16.png)
 
 
-- 批量插入订单数据之前，禁用触发器
-- ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/17.png)
+- 批量插入订单数据之前，禁用触发器<br>
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/17.png)
 
 
 ```sql
@@ -555,13 +555,12 @@ ALTER TRIGGER "ORDER_DETAILS_SNTNS_TRIG" DISABLE;
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/19.png)
 
 
-- 创建序列与视图创建
+- 创建序列与视图创建<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/20.png)
 
-
-- 插入departments，employees数据
-![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/21.png)
-![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/22.png)
+- 插入departments，employees数据<br>
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/21.png)<br>
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/22.png)<br>
 
 
 - 批量插入订单数据
