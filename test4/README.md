@@ -1,14 +1,15 @@
 ## 实验四
 
-- 登录系统用户更改用户名
+### 登录系统用户更改用户名
 ```sql
 ALTER USER STUDY QUOTA UNLIMITED ON USERS;
 ALTER USER STUDY QUOTA UNLIMITED ON USERS02;
 ALTER USER STUDY ACCOUNT UNLOCK;
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/23.png)
+
+### 对用户授权
 ```sql
-- 对用户授权
 GRANT "CONNECT" TO STUDY WITH ADMIN OPTION;
 GRANT "RESOURCE" TO STUDY WITH ADMIN OPTION;
 ALTER USER STUDY DEFAULT ROLE "CONNECT","RESOURCE";
@@ -55,7 +56,7 @@ end;
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/1.png)
 
 
-- 创建表DEPARTMENTS
+### 创建表DEPARTMENTS
 ```sql
 CREATE TABLE DEPARTMENTS
 (
@@ -101,7 +102,7 @@ NOCOMPRESS NO INMEMORY NOPARALLEL;
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/2.png)
 
 
-- 创建表EMPLOYEES
+### 创建表EMPLOYEES
 ```sql
 CREATE TABLE EMPLOYEES
 (
@@ -171,7 +172,7 @@ LOB (PHOTO) STORE AS SYS_LOB0000092017C00009$$
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/3.png)
 
-- 创建索引EMPLOYEES_INDEX1_NAME
+### 创建索引EMPLOYEES_INDEX1_NAME
 ```sql
 CREATE INDEX EMPLOYEES_INDEX1_NAME ON EMPLOYEES (NAME ASC)
 NOLOGGING
@@ -200,17 +201,17 @@ ENABLE;
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/4.png)
 
-- 创建外键<br>
+### 创建外键<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/5.png)<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/7.png)<br>
 
-- 创建表PRODUCTS<br>
+### 创建表PRODUCTS<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/6.png)<br>
 
--创建表ORDER_ID_TEMP<br>
+### 创建表ORDER_ID_TEMP<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/8.png)<br>
 
-- 创建表ORDERS
+### 创建表ORDERS
 ```sql
 CREATE TABLE ORDERS
 (
@@ -266,7 +267,7 @@ PARTITION BY RANGE (ORDER_DATE)
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/9.png)
 
 
-- 创建本地分区索引ORDERS_INDEX_DATE：
+### 创建本地分区索引ORDERS_INDEX_DATE：
 ```sql
 CREATE INDEX ORDERS_INDEX_DATE ON ORDERS (ORDER_DATE ASC)
 LOCAL
@@ -345,7 +346,7 @@ NOPARALLEL;
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/10.png)<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/11.png)<br>
 
-- 创建主键和外键
+### 创建主键和外键
 ```sql
 ALTER TABLE ORDERS
 ADD CONSTRAINT ORDERS_PK PRIMARY KEY
@@ -368,7 +369,7 @@ ENABLE;
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/12.png)
 
-- 创建表ORDER_DETAILS
+### 创建表ORDER_DETAILS
 ```sql
 CREATE TABLE ORDER_DETAILS
 (
@@ -476,7 +477,7 @@ ENABLE;
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/15.png)
 
 
-- 创建3个触发器
+### 创建3个触发器
 ```sql
 CREATE OR REPLACE EDITIONABLE TRIGGER "ORDERS_TRIG_ROW_LEVEL"
 BEFORE INSERT OR UPDATE OF DISCOUNT ON "ORDERS"
@@ -499,7 +500,7 @@ END;
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/16.png)
 
 
-- 批量插入订单数据之前，禁用触发器<br>
+### 批量插入订单数据之前，禁用触发器<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/17.png)
 
 
@@ -555,7 +556,7 @@ ALTER TRIGGER "ORDER_DETAILS_SNTNS_TRIG" DISABLE;
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/19.png)
 
 
-- 创建序列与视图创建<br>
+### 创建序列与视图创建<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/20.png)
 
 - 插入departments，employees数据<br>
@@ -563,7 +564,7 @@ ALTER TRIGGER "ORDER_DETAILS_SNTNS_TRIG" DISABLE;
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/22.png)<br>
 
 
-- 递归查询某个员工及其所有下属，子下属员工
+### 递归查询某个员工及其所有下属，子下属员工
 ```sql
 
 WITH A (EMPLOYEE_ID,NAME,EMAIL,PHONE_NUMBER,HIRE_DATE,SALARY,MANAGER_ID,DEPARTMENT_ID) AS
