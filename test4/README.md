@@ -1,15 +1,19 @@
 ## 实验四
 
 - 登录系统用户更改用户名
+```sql
 ALTER USER STUDY QUOTA UNLIMITED ON USERS;
 ALTER USER STUDY QUOTA UNLIMITED ON USERS02;
 ALTER USER STUDY ACCOUNT UNLOCK;
-
+```
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/23.png)
+```sql
 - 对用户授权
 GRANT "CONNECT" TO STUDY WITH ADMIN OPTION;
 GRANT "RESOURCE" TO STUDY WITH ADMIN OPTION;
 ALTER USER STUDY DEFAULT ROLE "CONNECT","RESOURCE";
-
+```
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/24.png)
 
 - 删除表的同时会一起删除主外键、触发器、程序包。
 ```sql
