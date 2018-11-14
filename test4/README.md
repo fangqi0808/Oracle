@@ -15,7 +15,7 @@ ALTER USER STUDY DEFAULT ROLE "CONNECT","RESOURCE";
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/24.png)
 
-- 删除表的同时会一起删除主外键、触发器、程序包。
+
 ```sql
 declare num number;
 begin
@@ -55,7 +55,7 @@ end;
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/1.png)
 
 
-- 创建表departments
+- 创建表DEPARTMENTS
 ```sql
 CREATE TABLE DEPARTMENTS
 (
@@ -101,7 +101,7 @@ NOCOMPRESS NO INMEMORY NOPARALLEL;
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/2.png)
 
 
-- 创建表employees
+- 创建表EMPLOYEES
 ```sql
 CREATE TABLE EMPLOYEES
 (
@@ -200,16 +200,17 @@ ENABLE;
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/4.png)
 
-- 更改表<br>
+- 创建外键<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/5.png)<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/6.png)<br>
+
+- 创建表PRODUCTS
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/7.png)<br>
 
+-创建表ORDER_ID_TEMP
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/8.png)<br>
 
-- 创建表与注释<br>
-![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/8.png)
-
-
+- 创建表ORDERS
 ```sql
 CREATE TABLE ORDERS
 (
