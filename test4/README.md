@@ -202,12 +202,12 @@ ENABLE;
 
 - 创建外键<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/5.png)<br>
-![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/6.png)<br>
-
-- 创建表PRODUCTS
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/7.png)<br>
 
--创建表ORDER_ID_TEMP
+- 创建表PRODUCTS<br>
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/6.png)<br>
+
+-创建表ORDER_ID_TEMP<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/8.png)<br>
 
 - 创建表ORDERS
@@ -345,7 +345,7 @@ NOPARALLEL;
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/10.png)<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/11.png)<br>
 
-- 更改表
+- 创建主键和外键
 ```sql
 ALTER TABLE ORDERS
 ADD CONSTRAINT ORDERS_PK PRIMARY KEY
@@ -458,7 +458,6 @@ ENABLE;
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/14.png)
 
 
-- 这个索引是必须的，可以使整个订单的详单存放在一起
 ```sql
 CREATE INDEX ORDER_DETAILS_ORDER_ID ON ORDER_DETAILS (ORDER_ID)
 GLOBAL PARTITION BY HASH (ORDER_ID)
@@ -564,6 +563,16 @@ ALTER TRIGGER "ORDER_DETAILS_SNTNS_TRIG" DISABLE;
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/22.png)<br>
 
 
-- 批量插入订单数据
+- 递归查询某个员工及其所有下属，子下属员工
 ```sql
 
+WITH A (EMPLOYEE_ID,NAME,EMAIL,PHONE_NUMBER,HIRE_DATE,SALARY,MANAGER_ID,DEPARTMENT_ID) AS
+  (SELECT EMPLOYEE_ID,NAME,EMAIL,PHONE_NUMBER,HIRE_DATE,SALARY,MANAGER_ID,DEPARTMENT_ID
+    FROM employees WHERE employee_ID = 11
+    UNION ALL
+  SELECT B.EMPLOYEE_ID,B.NAME,B.EMAIL,B.PHONE_NUMBER,B.HIRE_DATE,B.SALARY,B.MANAGER_ID,B.DEPARTMENT_ID
+    FROM A, employees B WHERE A.EMPLOYEE_ID = B.MANAGER_ID)
+SELECT * FROM A;
+```
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/25.png)<br>
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/26.png)<br>
