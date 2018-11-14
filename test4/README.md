@@ -243,3 +243,12 @@ STORAGE
 );
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/6.png)
+
+
+```sql
+ALTER TABLE PRODUCTS
+ADD CONSTRAINT PRODUCTS_CHK1 CHECK
+(PRODUCT_TYPE IN ('耗材', '手机', '电脑'))
+ENABLE;
+```
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/7.png)
