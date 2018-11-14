@@ -39,6 +39,7 @@ end;
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/1.png)
 
 
+
 - 创建表departments
 ```sql
 CREATE TABLE DEPARTMENTS
@@ -536,3 +537,148 @@ ENABLE;
 
 - 创建3个触发器
 ```sql
+CREATE OR REPLACE EDITIONABLE TRIGGER "ORDERS_TRIG_ROW_LEVEL"
+BEFORE INSERT OR UPDATE OF DISCOUNT ON "ORDERS"
+FOR EACH ROW --行级触发器
+declare
+  m number(8,2);
+BEGIN
+  if inserting then
+       :new.TRADE_RECEIVABLE := - :new.discount;
+  else
+      select sum(PRODUCT_NUM*PRODUCT_PRICE) into m from ORDER_DETAILS where ORDER_ID=:old.ORDER_ID;
+      if m is null then
+        m:=0;
+      end if;
+      :new.TRADE_RECEIVABLE := m - :new.discount;
+  end if;
+END;
+/
+```
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/16.png)
+
+
+- 批量插入订单数据之前，禁用触发器
+```sql
+ALTER TRIGGER "ORDERS_TRIG_ROW_LEVEL" DISABLE;
+```
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/17.png)
+
+
+```sql
+CREATE OR REPLACE EDITIONABLE TRIGGER "ORDER_DETAILS_ROW_TRIG"
+AFTER DELETE OR INSERT OR UPDATE  ON ORDER_DETAILS
+FOR EACH ROW
+BEGIN
+  --DBMS_OUTPUT.PUT_LINE(:NEW.ORDER_ID);
+  IF :NEW.ORDER_ID IS NOT NULL THEN
+    MERGE INTO ORDER_ID_TEMP A
+    USING (SELECT 1 FROM DUAL) B
+    ON (A.ORDER_ID=:NEW.ORDER_ID)
+    WHEN NOT MATCHED THEN
+      INSERT (ORDER_ID) VALUES(:NEW.ORDER_ID);
+  END IF;
+  IF :OLD.ORDER_ID IS NOT NULL THEN
+    MERGE INTO ORDER_ID_TEMP A
+    USING (SELECT 1 FROM DUAL) B
+    ON (A.ORDER_ID=:OLD.ORDER_ID)
+    WHEN NOT MATCHED THEN
+      INSERT (ORDER_ID) VALUES(:OLD.ORDER_ID);
+  END IF;
+END;
+/
+ALTER TRIGGER "ORDER_DETAILS_ROW_TRIG" DISABLE;
+```
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/18.png)
+
+
+```sql
+ CREATE OR REPLACE EDITIONABLE TRIGGER "ORDER_DETAILS_SNTNS_TRIG"
+AFTER DELETE OR INSERT OR UPDATE ON ORDER_DETAILS
+declare
+  m number(8,2);
+BEGIN
+  FOR R IN (SELECT ORDER_ID FROM ORDER_ID_TEMP)
+  LOOP
+    --DBMS_OUTPUT.PUT_LINE(R.ORDER_ID);
+    select sum(PRODUCT_NUM*PRODUCT_PRICE) into m from ORDER_DETAILS
+      where ORDER_ID=R.ORDER_ID;
+    if m is null then
+      m:=0;
+    end if;
+    UPDATE ORDERS SET TRADE_RECEIVABLE = m - discount
+      WHERE ORDER_ID=R.ORDER_ID;
+  END LOOP;
+  --delete from ORDER_ID_TEMP; --这句话很重要，否则可能一直不释放空间，后继插入会非常慢。
+END;
+/
+ALTER TRIGGER "ORDER_DETAILS_SNTNS_TRIG" DISABLE;
+```
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/19.png)
+
+
+```sql
+CREATE SEQUENCE  "SEQ_ORDER_ID"  MINVALUE 1 MAXVALUE 9999999999 INCREMENT BY 1 START WITH 1 CACHE 2000 ORDER  NOCYCLE  NOPARTITION ;
+
+
+CREATE SEQUENCE  "SEQ_ORDER_DETAILS_ID"  MINVALUE 1 MAXVALUE 9999999999 INCREMENT BY 1 START WITH 1 CACHE 2000 ORDER  NOCYCLE  NOPARTITION ;
+
+
+CREATE OR REPLACE FORCE EDITIONABLE VIEW "VIEW_ORDER_DETAILS" ("ID", "ORDER_ID", "CUSTOMER_NAME", "CUSTOMER_TEL", "ORDER_DATE", "PRODUCT_TYPE", "PRODUCT_NAME", "PRODUCT_NUM", "PRODUCT_PRICE") AS
+  SELECT
+  d.ID,
+  o.ORDER_ID,
+  o.CUSTOMER_NAME,o.CUSTOMER_TEL,o.ORDER_DATE,
+  p.PRODUCT_TYPE,
+  d.PRODUCT_NAME,
+  d.PRODUCT_NUM,
+  d.PRODUCT_PRICE
+FROM ORDERS o,ORDER_DETAILS d,PRODUCTS p where d.ORDER_ID=o.ORDER_ID and d.PRODUCT_NAME=p.PRODUCT_NAME;
+/
+```
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/20.png)
+
+
+- 插入DEPARTMENTS，EMPLOYEES数据
+```sql
+INSERT INTO DEPARTMENTS(DEPARTMENT_ID,DEPARTMENT_NAME) values (1,'总经办');
+INSERT INTO EMPLOYEES(EMPLOYEE_ID,NAME,EMAIL,PHONE_NUMBER,HIRE_DATE,SALARY,MANAGER_ID,DEPARTMENT_ID)
+  VALUES (1,'李董事长',NULL,NULL,to_date('2010-1-1','yyyy-mm-dd'),50000,NULL,1);
+
+INSERT INTO DEPARTMENTS(DEPARTMENT_ID,DEPARTMENT_NAME) values (11,'销售部1');
+INSERT INTO EMPLOYEES(EMPLOYEE_ID,NAME,EMAIL,PHONE_NUMBER,HIRE_DATE,SALARY,MANAGER_ID,DEPARTMENT_ID)
+  VALUES (11,'张总',NULL,NULL,to_date('2010-1-1','yyyy-mm-dd'),50000,1,1);
+INSERT INTO EMPLOYEES(EMPLOYEE_ID,NAME,EMAIL,PHONE_NUMBER,HIRE_DATE,SALARY,MANAGER_ID,DEPARTMENT_ID)
+  VALUES (111,'吴经理',NULL,NULL,to_date('2010-1-1','yyyy-mm-dd'),50000,11,11);
+INSERT INTO EMPLOYEES(EMPLOYEE_ID,NAME,EMAIL,PHONE_NUMBER,HIRE_DATE,SALARY,MANAGER_ID,DEPARTMENT_ID)
+  VALUES (112,'白经理',NULL,NULL,to_date('2010-1-1','yyyy-mm-dd'),50000,11,11);
+
+INSERT INTO DEPARTMENTS(DEPARTMENT_ID,DEPARTMENT_NAME) values (12,'销售部2');
+INSERT INTO EMPLOYEES(EMPLOYEE_ID,NAME,EMAIL,PHONE_NUMBER,HIRE_DATE,SALARY,MANAGER_ID,DEPARTMENT_ID)
+  VALUES (12,'王总',NULL,NULL,to_date('2010-1-1','yyyy-mm-dd'),50000,1,1);
+INSERT INTO EMPLOYEES(EMPLOYEE_ID,NAME,EMAIL,PHONE_NUMBER,HIRE_DATE,SALARY,MANAGER_ID,DEPARTMENT_ID)
+  VALUES (121,'赵经理',NULL,NULL,to_date('2010-1-1','yyyy-mm-dd'),50000,12,12);
+INSERT INTO EMPLOYEES(EMPLOYEE_ID,NAME,EMAIL,PHONE_NUMBER,HIRE_DATE,SALARY,MANAGER_ID,DEPARTMENT_ID)
+  VALUES (122,'刘经理',NULL,NULL,to_date('2010-1-1','yyyy-mm-dd'),50000,12,12);
+
+
+insert into products (product_name,product_type) values ('computer1','电脑');
+insert into products (product_name,product_type) values ('computer2','电脑');
+insert into products (product_name,product_type) values ('computer3','电脑');
+
+insert into products (product_name,product_type) values ('phone1','手机');
+insert into products (product_name,product_type) values ('phone2','手机');
+insert into products (product_name,product_type) values ('phone3','手机');
+
+insert into products (product_name,product_type) values ('paper1','耗材');
+insert into products (product_name,product_type) values ('paper2','耗材');
+insert into products (product_name,product_type) values ('paper3','耗材');
+```
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/21.png)
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/22.png)
+
+
+
+- 批量插入订单数据
+```sql
+
