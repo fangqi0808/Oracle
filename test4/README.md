@@ -201,9 +201,9 @@ ENABLE;
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/4.png)
 
 - 更改表
-- ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/5.png)
-- ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/6.png)
-- ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/7.png)
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/5.png)/br
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/6.png)/br
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/7.png)
 
 
 - 创建表与注释
@@ -341,8 +341,8 @@ STORAGE
 )
 NOPARALLEL;
 ```
-![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/10.png)
-![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/11.png)
+- ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/10.png)
+- ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/11.png)
 
 - 更改表
 ```sql
@@ -500,7 +500,7 @@ END;
 
 
 - 批量插入订单数据之前，禁用触发器
-![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/17.png)
+- ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/17.png)
 
 
 ```sql
