@@ -43,3 +43,7 @@ END MyPack;
 /
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test5/1.png)
+### 函数Get_SaleAmount()测试
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test5/2.png)
+### 过程Get_Employees()测试
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test5/3.png)
