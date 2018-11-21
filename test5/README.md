@@ -1,18 +1,16 @@
 # 实验五
-
+### 创建包MyPack
 ```sql
 create or replace PACKAGE MyPack IS
-  /*
-  本实验以实验4为基础。
-  包MyPack中有：
-  一个函数:Get_SaleAmount(V_DEPARTMENT_ID NUMBER)，
-  一个过程:Get_Employees(V_EMPLOYEE_ID NUMBER)
-  */
   FUNCTION Get_SaleAmount(V_DEPARTMENT_ID NUMBER) RETURN NUMBER;
   PROCEDURE Get_Employees(V_EMPLOYEE_ID NUMBER);
 END MyPack;
 /
 create or replace PACKAGE BODY MyPack IS
+
+/*
+在包中创建函数:Get_SaleAmount(V_DEPARTMENT_ID NUMBER)
+*/
   FUNCTION Get_SaleAmount(V_DEPARTMENT_ID NUMBER) RETURN NUMBER
   AS
     N NUMBER(20,2); --注意，订单ORDERS.TRADE_RECEIVABLE的类型是NUMBER(8,2),汇总之后，数据要大得多。
@@ -21,7 +19,10 @@ create or replace PACKAGE BODY MyPack IS
       WHERE O.EMPLOYEE_ID=E.EMPLOYEE_ID AND E.DEPARTMENT_ID =V_DEPARTMENT_ID;
       RETURN N;
     END;
-
+    
+/*
+ 在包中创建过程:Get_Employees(V_EMPLOYEE_ID NUMBER)
+  */
   PROCEDURE GET_EMPLOYEES(V_EMPLOYEE_ID NUMBER)
   AS
     LEFTSPACE VARCHAR(2000);
@@ -40,3 +41,5 @@ create or replace PACKAGE BODY MyPack IS
     END;
 END MyPack;
 /
+```
+![Alt]()
