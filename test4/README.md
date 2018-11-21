@@ -349,26 +349,6 @@ NOPARALLEL;
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/11.png)<br>
 
 ### 创建主键和外键
-```sql
-ALTER TABLE ORDERS
-ADD CONSTRAINT ORDERS_PK PRIMARY KEY
-(
-  ORDER_ID
-)
-USING INDEX ORDERS_PK
-ENABLE;
-
-ALTER TABLE ORDERS
-ADD CONSTRAINT ORDERS_FK1 FOREIGN KEY
-(
-  EMPLOYEE_ID
-)
-REFERENCES EMPLOYEES
-(
-  EMPLOYEE_ID
-)
-ENABLE;
-```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/12.png)
 
 ### 创建表ORDER_DETAILS
