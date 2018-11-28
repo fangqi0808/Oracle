@@ -528,3 +528,7 @@ ALTER TRIGGER "ORDER_DETAILS_SNTNS_TRIG" DISABLE;
 ### 递归查询某个员工及其所有下属，子下属员工
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/25.png)<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/26.png)<br>
+### 查询订单表，并且包括订单的订单应收货款: Trade_Receivable= sum(订单详单表.ProductNum*订单详单表.ProductPrice)- Discount。
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/27.png)<br>
+### 查询部门表，同时显示部门的负责人姓名。
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/28.png)<br>
