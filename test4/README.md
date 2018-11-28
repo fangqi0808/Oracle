@@ -462,8 +462,8 @@ END;
 
 
 ### 批量插入订单数据之前，禁用触发器
-![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/17.png)
-![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/18.png)
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/17.png)<br>
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/18.jpg)
 
 
 ```sql
