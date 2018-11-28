@@ -1,5 +1,4 @@
-## 实验四
-
+# 实验四 对象管理
 ### 登录系统用户更改用户名
 ```sql
 ALTER USER STUDY QUOTA UNLIMITED ON USERS;
@@ -7,7 +6,6 @@ ALTER USER STUDY QUOTA UNLIMITED ON USERS02;
 ALTER USER STUDY ACCOUNT UNLOCK;
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/23.png)
-
 ### 对用户授权
 ```sql
 GRANT "CONNECT" TO STUDY WITH ADMIN OPTION;
@@ -15,8 +13,6 @@ GRANT "RESOURCE" TO STUDY WITH ADMIN OPTION;
 ALTER USER STUDY DEFAULT ROLE "CONNECT","RESOURCE";
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/24.png)
-
-
 ```sql
 declare num number;
 begin
@@ -54,8 +50,6 @@ end;
 /
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/1.png)
-
-
 ### 创建表DEPARTMENTS
 ```sql
 CREATE TABLE DEPARTMENTS
@@ -100,8 +94,6 @@ STORAGE
 NOCOMPRESS NO INMEMORY NOPARALLEL;
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/2.png)
-
-
 ### 创建表EMPLOYEES
 ```sql
 CREATE TABLE EMPLOYEES
@@ -171,7 +163,6 @@ LOB (PHOTO) STORE AS SYS_LOB0000092017C00009$$
 );
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/3.png)
-
 ### 创建索引EMPLOYEES_INDEX1_NAME
 ```sql
 CREATE INDEX EMPLOYEES_INDEX1_NAME ON EMPLOYEES (NAME ASC)
@@ -200,17 +191,13 @@ REFERENCES DEPARTMENTS
 ENABLE;
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/4.png)
-
 ### 创建外键<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/5.png)<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/7.png)<br>
-
 ### 创建表PRODUCTS<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/6.png)<br>
-
 ### 创建表ORDER_ID_TEMP<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/8.png)<br>
-
 ### 创建表ORDERS
 ```sql
 CREATE TABLE ORDERS
@@ -265,8 +252,6 @@ PARTITION BY RANGE (ORDER_DATE)
 );
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/9.png)
-
-
 ### 创建本地分区索引ORDERS_INDEX_DATE：
 ```sql
 CREATE INDEX ORDERS_INDEX_DATE ON ORDERS (ORDER_DATE ASC)
@@ -305,7 +290,6 @@ STORAGE
 )
 NOPARALLEL;
 ```
-
 ### 创建本地分区索引ORDERS_INDEX_CUSTOMER_NAME：
 ```sql
 CREATE INDEX ORDERS_INDEX_CUSTOMER_NAME ON ORDERS (CUSTOMER_NAME ASC)
@@ -326,10 +310,8 @@ NOPARALLEL;
 ### 创建本地分区索引ORDERS_PK：
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/10.png)<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/11.png)<br>
-
 ### 创建主键和外键
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/12.png)
-
 ### 创建表ORDER_DETAILS
 ```sql
 CREATE TABLE ORDER_DETAILS
@@ -391,8 +373,6 @@ PARTITION BY REFERENCE (ORDER_DETAILS_FK1)
 );
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/13.png)
-
-
 ```sql
 CREATE UNIQUE INDEX ORDER_DETAILS_PK ON ORDER_DETAILS (ID ASC)
 NOLOGGING
@@ -418,8 +398,6 @@ USING INDEX ORDER_DETAILS_PK
 ENABLE;
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/14.png)
-
-
 ```sql
 CREATE INDEX ORDER_DETAILS_ORDER_ID ON ORDER_DETAILS (ORDER_ID)
 GLOBAL PARTITION BY HASH (ORDER_ID)
@@ -436,8 +414,6 @@ ADD CONSTRAINT ORDER_DETAILS_PRODUCT_NUM CHECK
 ENABLE;
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/15.png)
-
-
 ### 创建3个触发器
 ```sql
 CREATE OR REPLACE EDITIONABLE TRIGGER "ORDERS_TRIG_ROW_LEVEL"
@@ -459,46 +435,15 @@ END;
 /
 ```
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/16.png)
-
-
 ### 批量插入订单数据之前，禁用触发器
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/17.png)<br>
-![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/18.jpg)
-
-
-```sql
- CREATE OR REPLACE EDITIONABLE TRIGGER "ORDER_DETAILS_SNTNS_TRIG"
-AFTER DELETE OR INSERT OR UPDATE ON ORDER_DETAILS
-declare
-  m number(8,2);
-BEGIN
-  FOR R IN (SELECT ORDER_ID FROM ORDER_ID_TEMP)
-  LOOP
-    --DBMS_OUTPUT.PUT_LINE(R.ORDER_ID);
-    select sum(PRODUCT_NUM*PRODUCT_PRICE) into m from ORDER_DETAILS
-      where ORDER_ID=R.ORDER_ID;
-    if m is null then
-      m:=0;
-    end if;
-    UPDATE ORDERS SET TRADE_RECEIVABLE = m - discount
-      WHERE ORDER_ID=R.ORDER_ID;
-  END LOOP;
-  --delete from ORDER_ID_TEMP; 
-END;
-/
-ALTER TRIGGER "ORDER_DETAILS_SNTNS_TRIG" DISABLE;
-```
+![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/18.jpg)<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/19.png)
-
-
 ### 创建序列与视图创建<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/20.png)
-
 ### 插入departments，employees数据<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/21.png)<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/22.png)<br>
-
-
 ### 递归查询某个员工及其所有下属，子下属员工
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/25.png)<br>
 ![Alt](https://github.com/fangqi201610414409/Oracle/blob/master/test4/26.png)<br>
